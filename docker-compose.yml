@@ -1,7 +1,7 @@
 version: "3"
 services:
     my-redis:
-        image: redis:lastest
+        image: redis:6.0-rc4
         volumes:
             - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
         ports: 

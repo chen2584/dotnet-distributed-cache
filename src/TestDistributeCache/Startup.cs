@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
+using TestDistributeCache.Models;
 
 namespace TestDistributeCache
 {
@@ -19,10 +20,10 @@ namespace TestDistributeCache
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var setting = Configuration.Get<AppSetting>();
             services.AddStackExchangeRedisCache(options =>
             {
-                options.Configuration = "localhost";
-                options.InstanceName = "SampleInstance";
+                options.Configuration = setting.Redis.Host;
             });
             services.AddControllers();
         }
